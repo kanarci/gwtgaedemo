@@ -16,11 +16,10 @@ import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 
 import cz.cvut.felk.via.examples.datastore.client.RPCService;
 import cz.cvut.felk.via.examples.datastore.client.RPCServiceAsync;
-import cz.cvut.felk.via.examples.datastore.shared.DatastoreUpdateEvent;
-import cz.cvut.felk.via.examples.datastore.shared.EventBus;
+import cz.cvut.felk.via.examples.datastore.client.events.DatastoreUpdateEvent;
+import cz.cvut.felk.via.examples.datastore.client.events.EventBus;
 
-public class CreateObjects extends Composite implements
-		DatastoreUpdateEvent.Handler {
+public class CreateObjects extends Composite {
 
 	/**
 	 * Create a remote service proxy to talk to the server-side RPCservice.
@@ -65,9 +64,6 @@ public class CreateObjects extends Composite implements
 
 		custPopUp.setAnimationEnabled(true);
 		custPopUp.setAutoHideEnabled(true);
-
-		// register this widget as a handler of DatastoreUpdateevent
-		EventBus.get().addHandler(DatastoreUpdateEvent.TYPE, this);
 
 		initWidget(tPanel);
 	}
@@ -287,11 +283,6 @@ public class CreateObjects extends Composite implements
 				@Override
 				public void onSuccess(Void result) {
 					custPopUp.setMessage(" Teacher added");
-					int left = tPanel.getAbsoluteLeft()
-							+ tPanel.getOffsetWidth() - 100;
-					int top = tPanel.getAbsoluteTop()
-							+ tPanel.getOffsetHeight() - 30;
-					custPopUp.setPopupPosition(left, top);
 					custPopUp.center();
 					EventBus.get().fireEvent(new DatastoreUpdateEvent());
 				}
@@ -305,10 +296,4 @@ public class CreateObjects extends Composite implements
 		teacherListBox.refreshContent();
 	}
 
-	@Override
-	public void onDatastoreUpdate(DatastoreUpdateEvent p) {
-		System.out.println(" Event handler - CreateObjects");
-		this.refreshContent();
-
-	}
 }

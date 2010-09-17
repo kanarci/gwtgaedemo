@@ -1,5 +1,6 @@
 package cz.cvut.felk.via.examples.datastore.client;
 
+import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -26,4 +27,6 @@ public interface RPCService extends RemoteService {
 	List<SubjectRPC> getSubjectObjectList();
 
 	void addStudent(String name, String surname, int grade);
+
+	Boolean dataChanged(Date date);
 }

@@ -1,5 +1,6 @@
 package cz.cvut.felk.via.examples.datastore.client;
 
+import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -26,5 +27,8 @@ public interface RPCServiceAsync {
 
 	void addStudent(String name, String surname, int grade,
 			AsyncCallback<Void> asyncCallback);
+
+	void dataChanged(Date date, AsyncCallback<Boolean> callback);
+
 
 }

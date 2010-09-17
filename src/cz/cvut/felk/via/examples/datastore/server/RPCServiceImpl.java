@@ -1,5 +1,6 @@
 package cz.cvut.felk.via.examples.datastore.server;
 
+import java.util.Date;
 import java.util.List;
 
 import cz.cvut.felk.via.examples.datastore.client.RPCService;
@@ -52,5 +53,12 @@ public class RPCServiceImpl extends RemoteServiceServlet implements RPCService {
 		DatastoreOperations.addStudent(name, surname, grade);
 
 	}
+
+	@Override
+	public Boolean dataChanged(Date date) {
+		System.out.println("Server date is : " + DWDF.get().getLastUpdateTime() + " client date is : " + date);
+		return DWDF.get().getLastUpdateTime().after(date);
+	}
+
 
 }

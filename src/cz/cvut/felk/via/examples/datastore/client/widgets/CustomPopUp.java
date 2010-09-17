@@ -3,6 +3,7 @@ package cz.cvut.felk.via.examples.datastore.client.widgets;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.DecoratedPopupPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
@@ -16,6 +17,15 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class CustomPopUp extends DecoratedPopupPanel {
 
+	private Timer timer = new Timer() {
+		
+		@Override
+		public void run() {
+			timer.schedule(2000);
+			hide();
+		}
+	};
+	
 	private static CustomPopUpUiBinder uiBinder = GWT
 			.create(CustomPopUpUiBinder.class);
 
@@ -34,4 +44,18 @@ public class CustomPopUp extends DecoratedPopupPanel {
 		this.message.setHTML(message);
 	}
 
+
+	@Override
+	public void center() {
+		timer.run();
+		super.center();
+	}
+
+	@Override
+	public void show() {
+		timer.run();
+		super.show();
+	}
+
+	
 }

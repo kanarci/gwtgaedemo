@@ -31,8 +31,6 @@ public class TeachersListBox extends Composite {
 
 	public TeachersListBox() {
 		super();
-		refreshContent();
-
 		initWidget(listBox);
 	}
 

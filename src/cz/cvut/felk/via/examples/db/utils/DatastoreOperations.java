@@ -9,9 +9,9 @@ import javax.jdo.Query;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
+import cz.cvut.felk.via.examples.datastore.client.events.DatastoreUpdateEvent;
+import cz.cvut.felk.via.examples.datastore.client.events.EventBus;
 import cz.cvut.felk.via.examples.datastore.client.rpcobjects.SubjectRPC;
-import cz.cvut.felk.via.examples.datastore.shared.DatastoreUpdateEvent;
-import cz.cvut.felk.via.examples.datastore.shared.EventBus;
 import cz.cvut.felk.via.examples.db.objects.Student;
 import cz.cvut.felk.via.examples.db.objects.Subject;
 import cz.cvut.felk.via.examples.db.objects.Teacher;
@@ -59,8 +59,8 @@ public class DatastoreOperations {
 		try {
 			Query q = pm.newQuery(o);
 			q.deletePersistentAll();
-			System.out.println("All " + o.getClass().getSimpleName()
-					+ " objects wiped out from datastore");
+//			System.out.println("All " + o.getClass().getSimpleName()
+//					+ " objects wiped out from datastore");
 		} finally {
 			pm.close();
 		}
@@ -102,8 +102,8 @@ public class DatastoreOperations {
 	private static <T> T getObjectForKey(Class<T> o, Key key) {
 
 		if (key == null) {
-			System.out
-					.println("getObjectForKey(class<T> o,key) - key was null");
+//			System.out
+//					.println("getObjectForKey(class<T> o,key) - key was null");
 			return null;
 		}
 
@@ -213,7 +213,7 @@ public class DatastoreOperations {
 	 */
 	public static void addStudent(String name, String surname, int grade) {
 		makeObjectPersistent(new Student(name, surname, grade));
-		System.out.println(" Handler count " + EventBus.get().getHandlerCount(DatastoreUpdateEvent.TYPE));
+//		System.out.println(" Handler count " + EventBus.get().getHandlerCount(DatastoreUpdateEvent.TYPE));
 		EventBus.get().fireEvent(new DatastoreUpdateEvent());
 	}
 

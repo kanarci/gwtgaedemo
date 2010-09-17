@@ -13,11 +13,8 @@ import com.google.gwt.user.client.ui.Widget;
 
 import cz.cvut.felk.via.examples.datastore.client.RPCService;
 import cz.cvut.felk.via.examples.datastore.client.RPCServiceAsync;
-import cz.cvut.felk.via.examples.datastore.shared.DatastoreUpdateEvent;
-import cz.cvut.felk.via.examples.datastore.shared.EventBus;
 
-public class ViewObjects extends Composite implements
-		DatastoreUpdateEvent.Handler {
+public class ViewObjects extends Composite {
 
 	/**
 	 * Create a remote service proxy to talk to the server-side RPCservice.
@@ -39,13 +36,9 @@ public class ViewObjects extends Composite implements
 		stackPanel.add(createStudentList(), "Students", 25);
 		stackPanel.add(createSubjectsList(), "Subjects", 25);
 		stackPanel.add(createTeachersList(), "Teachers", 25);
-
-		// register this widget as a handler of DatastoreUpdateevent
-		EventBus.get().addHandler(DatastoreUpdateEvent.TYPE, this);
-
-		refreshContent();
-
+		
 		initWidget(stackPanel);
+		
 	}
 
 	private Widget createSubjectsList() {
@@ -67,7 +60,6 @@ public class ViewObjects extends Composite implements
 	}
 
 	public void refreshContent() {
-		System.out.println("Refreshing ViewObjects content");
 		refreshStudentTree();
 		refreshSubjectTree();
 		refreshTeacherTree();
@@ -146,11 +138,5 @@ public class ViewObjects extends Composite implements
 		});
 	}
 
-	@Override
-	public void onDatastoreUpdate(DatastoreUpdateEvent p) {
-		System.out.println(" Event handler - ViewObjects");
-		this.refreshContent();
-
-	}
 
 }

@@ -1,4 +1,4 @@
-package cz.cvut.felk.via.examples.datastore.shared;
+package cz.cvut.felk.via.examples.datastore.client.events;
 
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
